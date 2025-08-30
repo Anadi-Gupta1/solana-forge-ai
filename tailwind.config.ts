@@ -52,6 +52,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// IDE-specific colors
+				editor: 'hsl(var(--editor-bg))',
+				'sidebar-bg': 'hsl(var(--sidebar-bg))',
+				'panel-bg': 'hsl(var(--panel-bg))',
+				'hover-bg': 'hsl(var(--hover-bg))',
+				// Code syntax colors
+				'code-keyword': 'hsl(var(--code-keyword))',
+				'code-string': 'hsl(var(--code-string))',
+				'code-comment': 'hsl(var(--code-comment))',
+				'code-function': 'hsl(var(--code-function))',
+				'code-variable': 'hsl(var(--code-variable))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
