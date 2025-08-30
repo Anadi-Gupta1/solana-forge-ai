@@ -65,12 +65,13 @@ export const WelcomeScreen = ({ onGetStarted }: WelcomeScreenProps) => {
               className="h-12 px-8 text-base font-medium"
             >
               <Rocket className="mr-2" size={20} />
-              Start Coding
+              Launch IDE
             </Button>
             
             <Button 
               variant="outline" 
               size="lg"
+              onClick={onGetStarted}
               className="h-12 px-8 text-base font-medium"
             >
               <Bot className="mr-2" size={20} />

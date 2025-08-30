@@ -1,15 +1,19 @@
-import { useState } from "react";
 import { WelcomeScreen } from "@/components/Welcome/WelcomeScreen";
-import { IDELayout } from "@/components/Layout/IDELayout";
+import { Layout } from "@/components/Layout/Layout";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
-  const [showIDE, setShowIDE] = useState(false);
+  const navigate = useNavigate();
 
-  if (showIDE) {
-    return <IDELayout />;
-  }
+  const handleGetStarted = () => {
+    navigate("/ide");
+  };
 
-  return <WelcomeScreen onGetStarted={() => setShowIDE(true)} />;
+  return (
+    <Layout>
+      <WelcomeScreen onGetStarted={handleGetStarted} />
+    </Layout>
+  );
 };
 
 export default Index;
