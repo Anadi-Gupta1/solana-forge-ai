@@ -45,12 +45,30 @@ All colors MUST be HSL.
     /* Custom Solana gradients */
     --gradient-solana: linear-gradient(135deg, hsl(270 91% 65%) 0%, hsl(142 76% 73%) 100%);
     --gradient-solana-subtle: linear-gradient(135deg, hsl(270 91% 65% / 0.1) 0%, hsl(142 76% 73% / 0.1) 100%);
+    --gradient-aurora: linear-gradient(135deg, hsl(270 91% 65%) 0%, hsl(310 80% 70%) 25%, hsl(200 100% 70%) 50%, hsl(142 76% 73%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    --gradient-neon: linear-gradient(90deg, hsl(270 91% 65%) 0%, hsl(310 80% 70%) 50%, hsl(142 76% 73%) 100%);
+    
+    /* Glassmorphism effects */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --blur-glass: blur(20px);
+    --blur-subtle: blur(8px);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsl(270 91% 65% / 0.3);
+    --shadow-glow-accent: 0 0 20px hsl(142 76% 73% / 0.3);
+    --shadow-deep: 0 25px 50px -12px hsl(240 10% 0% / 0.5);
+    --shadow-glass: 0 8px 32px hsl(240 10% 0% / 0.3);
+    --shadow-neon: 0 0 30px hsl(270 91% 65% / 0.5), 0 0 60px hsl(270 91% 65% / 0.3);
     
     /* IDE-specific colors */
     --editor-bg: 240 7% 6%;
     --sidebar-bg: 240 5% 7%;
     --panel-bg: 240 5% 9%;
     --hover-bg: 240 5% 12%;
+    --glass-panel: rgba(255, 255, 255, 0.03);
+    --glass-hover: rgba(255, 255, 255, 0.08);
     
     /* Code syntax colors */
     --code-keyword: 270 91% 75%;
@@ -58,10 +76,17 @@ All colors MUST be HSL.
     --code-comment: 210 20% 65%;
     --code-function: 195 100% 70%;
     --code-variable: 39 100% 70%;
+    --code-type: 310 80% 70%;
+    --code-number: 25 100% 70%;
 
-    /* Animations */
+    /* Enhanced animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.15s ease-out;
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --animation-float: float 3s ease-in-out infinite;
+    --animation-pulse-glow: pulse-glow 2s ease-in-out infinite alternate;
+    --animation-gradient: gradient-shift 3s ease-in-out infinite;
 
     --sidebar-background: 0 0% 98%;
 
@@ -127,4 +152,82 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom animations and effects */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px hsl(270 91% 65% / 0.3); }
+  100% { box-shadow: 0 0 40px hsl(270 91% 65% / 0.6), 0 0 60px hsl(270 91% 65% / 0.3); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Utility classes */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-panel {
+  background: var(--glass-panel);
+  backdrop-filter: var(--blur-subtle);
+  border: 1px solid var(--glass-border);
+}
+
+.gradient-text {
+  background: var(--gradient-solana);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--gradient-solana);
+  padding: 1px;
+  border-radius: inherit;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: hsl(var(--background));
+  border-radius: inherit;
+}
+
+.neon-glow {
+  box-shadow: var(--shadow-neon);
+}
+
+.floating {
+  animation: var(--animation-float);
+}
+
+.pulse-glow {
+  animation: var(--animation-pulse-glow);
 }
